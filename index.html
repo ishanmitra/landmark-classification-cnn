@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- markdowntohtml.com -->
+    <title>Landmark Classification & Tagging for Social Media</title>
+    <style>
+      body {
+        font: 400 16px/1.5 "Helvetica Neue", Helvetica, Arial, sans-serif;
+        color: #111;
+        background-color: #fbfbfb;
+        -webkit-text-size-adjust: 100%;
+        -webkit-font-feature-settings: "kern"1;
+        -moz-font-feature-settings: "kern"1;
+        -o-font-feature-settings: "kern"1;
+        font-feature-settings: "kern"1;
+        font-kerning: normal;
+        padding: 30px;
+        max-width: 720px;
+        margin: 0 auto;
+      }
+
+      body>#content {
+        margin: 0px;
+        max-width: 900px;
+        border: 1px solid #e1e4e8;
+        padding: 10px 40px;
+        padding-bottom: 20px;
+        border-radius: 2px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      summary {
+        cursor: pointer;
+        text-decoration: underline;
+      }
+
+      hr {
+        color: #bbb;
+        background-color: #bbb;
+        height: 1px;
+        flex: 0 1 auto;
+        margin: 1em 0;
+        padding: 0;
+        border: none;
+      }
+
+      .hljs-operator {
+        color: #868686;
+        /* There is a bug where the syntax highlighter would pick no color for e.g. `&&` symbols in the code samples. Let's overwrite this */
+      }
+
+      /**
+* Links
+*/
+      a {
+        color: #0366d6;
+        text-decoration: none;
+      }
+
+      a:visited {
+        color: #0366d6;
+      }
+
+      a:hover {
+        color: #0366d6;
+        text-decoration: underline;
+      }
+
+      pre {
+        background-color: #f6f8fa;
+        border-radius: 3px;
+        font-size: 85%;
+        line-height: 1.45;
+        overflow: auto;
+        padding: 16px;
+      }
+
+      /**
+* Code blocks
+*/
+      code {
+        background-color: rgba(27, 31, 35, .05);
+        border-radius: 3px;
+        font-size: 85%;
+        margin: 0;
+        word-wrap: break-word;
+        padding: .2em .4em;
+        font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier, monospace;
+      }
+
+      pre>code {
+        background-color: transparent;
+        border: 0;
+        display: inline;
+        line-height: inherit;
+        margin: 0;
+        overflow: visible;
+        padding: 0;
+        word-wrap: normal;
+        font-size: 100%;
+      }
+
+      /**
+* Blockquotes
+*/
+      blockquote {
+        margin-left: 30px;
+        margin-top: 0px;
+        margin-bottom: 16px;
+        border-left-width: 3px;
+        padding: 0 1em;
+        color: #828282;
+        border-left: 4px solid #e8e8e8;
+        padding-left: 15px;
+        font-size: 18px;
+        letter-spacing: -1px;
+        font-style: italic;
+      }
+
+      blockquote * {
+        font-style: normal !important;
+        letter-spacing: 0;
+        color: #6a737d !important;
+      }
+
+      /**
+* Tables
+*/
+      table {
+        border-spacing: 2px;
+        display: block;
+        font-size: 14px;
+        overflow: auto;
+        width: 100%;
+        margin-bottom: 16px;
+        border-spacing: 0;
+        border-collapse: collapse;
+      }
+
+      td {
+        padding: 6px 13px;
+        border: 1px solid #dfe2e5;
+      }
+
+      th {
+        font-weight: 600;
+        padding: 6px 13px;
+        border: 1px solid #dfe2e5;
+      }
+
+      tr {
+        background-color: #fff;
+        border-top: 1px solid #c6cbd1;
+      }
+
+      table tr:nth-child(2n) {
+        background-color: #f6f8fa;
+      }
+
+      /**
+* Others
+*/
+      img {
+        max-width: 100%;
+      }
+
+      p {
+        line-height: 24px;
+        font-weight: 400;
+        font-size: 16px;
+        color: #24292e;
+      }
+
+      ul {
+        margin-top: 0;
+      }
+
+      li {
+        color: #24292e;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 1.5;
+      }
+
+      li+li {
+        margin-top: 0.25em;
+      }
+
+      * {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        color: #24292e;
+      }
+
+      a:visited {
+        color: #0366d6;
+      }
+
+      h1,
+      h2,
+      h3 {
+        border-bottom: 1px solid #eaecef;
+        color: #111;
+        /* Darker */
+      }
+
+      code>* {
+        font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace !important;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 id="landmark-classification-tagging-for-social-media">Landmark Classification &amp; Tagging for Social Media</h1>
+    <p>A landmark-classification model training comparison project for Udacity&#39;s AWS Machine Learning Fundamentals Nanodegree. </p>
+    <h2 id="table-of-contents">Table of Contents</h2>
+    <ul>
+      <li>
+        <a href="#landmark-classification-tagging-for-social-media">Landmark Classification &amp; Tagging for Social Media</a>
+        <ul>
+          <li>
+            <a href="#table-of-contents">Table of Contents</a>
+          </li>
+          <li>
+            <a href="#overview">Overview</a>
+          </li>
+          <li>
+            <a href="#file-contents">File Contents</a>
+          </li>
+          <li>
+            <a href="#notebook-preview">Notebook Preview</a>
+          </li>
+          <li>
+            <a href="#inferences">Inferences</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <h2 id="overview">Overview</h2>
+    <p>This is a project in Udacity’s AWS Machine Learning Fundamentals Nanodegree comparing the training of data between a simpler CNN model from scratch and a pre-trained deep neural network model.</p>
+    <p>Two machine learning models: a <em>CNN with no pre-trained data</em>, and a <em>deep neural network with pre-trained data</em>, are put to the test to identify and classify landmarks based off of pictures. </p>
+    <p>The dataset consists of pictures from 50 labelled landmarks and separated into <code>test</code> and <code>train</code> for training validation. </p>
+    <p>The goal of this project is to compare the <em>performance</em> of the two models and the <em>convenience</em> between using these models. </p>
+    <h2 id="file-contents">File Contents</h2>
+    <ul>
+      <li>
+        <p>
+          <code>src\</code> : Directory for the APIs for the learning models
+        </p>
+      </li>
+      <li>
+        <p>
+          <code>static_images\</code> : Image directory
+        </p>
+      </li>
+      <li>
+        <p>
+          <code>app_files</code> : Static image files for <code>app.html</code> snapshot
+        </p>
+      </li>
+      <li>
+        <p>
+          <code>app.html</code>
+          <code>app.ipynb</code> : Jupyter notebook (and HTML) for web app frontend
+        </p>
+      </li>
+      <li>
+        <p>
+          <code>cnn_from_scratch.*</code> : Jupyter notebook (and HTML) for demonstration of training on <em>CNN from scratch</em>
+        </p>
+      </li>
+      <li>
+        <p>
+          <code>transfer_learning.*</code> : Jupyter notebook (and HTML) for demonstration of training on <em>transfer learning</em>
+        </p>
+      </li>
+    </ul>
+    <h2 id="notebook-preview">Notebook Preview</h2>
+    <p>Snapshots of the Jupyter notebook is saved as HTML for ease of viewing. </p>
+    <ol>
+      <li>
+        <a href="https://ishanmitra.github.io/landmark-classification-cnn/app.html">App Frontend (Frozen)</a>
+      </li>
+      <li>
+        <a href="https://ishanmitra.github.io/landmark-classification-cnn/cnn_from_scratch.html">CNN from scratch</a>
+      </li>
+      <li>
+        <a href="https://ishanmitra.github.io/landmark-classification-cnn/transfer_learning.html">Transfer Learning</a>
+      </li>
+    </ol>
+    <h2 id="inferences">Inferences</h2>
+    <p>The CNN model test accuracy is <strong>55%</strong> (697/1250) whereas the test accuracy on a pre-trained ResNet18 model is <strong>74%</strong> (909/1250). </p>
+    <p>The advantage of pre-trained weights for deep neural networks is that the model is quickly able to identify features vital to identify landmarks accurately and predict the location.</p>
+    <p>The CNN model is a simpler network that was able to classify more than half of the images correctly without any pre-trained weights. The model has a drawback of not being able to converge any further.</p>
+    <p>The ResNet would require a lot of training time and data to generate the weights to achieve a similar accuracy. However, transfer learning removes that inconvenience allowing the model to train on a custom dataset.</p>
+  </body>
+</html>
